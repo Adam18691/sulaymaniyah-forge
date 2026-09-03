@@ -1,0 +1,5 @@
+{
+  "name": "Forge 12GB RAM - Rust",
+  "image": "mcr.microsoft.com/devcontainers/rust:latest",
+  "hostRequirements": { "cpus": 4, "memory": "12gb", "storage": "32gb" }
+}
