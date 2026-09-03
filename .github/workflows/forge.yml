@@ -1,0 +1,19 @@
+name: Forge 12GB RAM
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - run: |
+          free -h
+          cargo build --release
+         ./target/release/sulaymaniyah-forge --topic "كتابي" --lang ar
+      - uses: actions/upload-artifact@v4
+        with:
+          name: book
+          path: |
+            book.md
+            book.pdf
