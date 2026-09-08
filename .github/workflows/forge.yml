@@ -4,8 +4,7 @@ on:
   push:
     branches:
       - main
-  # هذا الجزء هو المسؤول عن إظهار زر "Run workflow" في صفحة Actions
-  workflow_dispatch:
+  workflow_dispatch: {} # أضفت الأقواس هنا لضمان تفعيل الزر في جميع إصدارات GitHub
 
 jobs:
   build:
@@ -28,7 +27,6 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN_1 }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-        # موضوع احترافي بالإنجليزية مع تحديد اللغة en
         run: cargo run --release -- --topic "The One-Person AI Empire: How to Build a Digital Income System Using AI Automation" --lang en
 
       - name: List files for debugging
@@ -38,7 +36,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ai-empire-book
-          # البحث الشامل عن أي ملف md أو pdf لضمان الرفع
           path: |
             **/*.md
             **/*.pdf
