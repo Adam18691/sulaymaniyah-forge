@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch: # هذا السطر يضيف زر "Run workflow" في صفحة Actions
+  workflow_dispatch:
 
 jobs:
   build:
