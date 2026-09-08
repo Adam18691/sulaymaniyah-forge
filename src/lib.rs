@@ -1,19 +1,23 @@
 pub struct Forge {
-    pub name: String,
+    pub topic: String,
 }
 
 impl Forge {
-    pub fn new(name: &str) -> Self {
+    // تأكد أن الدالة تأخذ &str كمدخل
+    pub fn new(topic: &str) -> Self {
         Forge {
-            name: name.to_string(),
+            topic: topic.to_string(),
         }
     }
 
-    pub fn run(&self) {
-        println!("{} is now forging...", self.name);
+    // تأكد أن دالة run تأخذ &str (اللغة) كمدخل
+    pub fn run(&self, lang: &str) {
+        println!("Generating book about {} in language {}...", self.topic, lang);
+        // هنا تضع منطق توليد الكتاب الخاص بك
     }
 }
 
 pub fn initialize() {
-    println!("Initializing Sulaymaniyah Forge system...");
+    println!("Initializing Sulaymaniyah Forge System...");
+    // منطق التهيئة الخاص بك
 }
