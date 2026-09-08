@@ -4,36 +4,37 @@ on:
     branches:
       - main
   workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-  - name: Setup Rust
-    uses: dtolnay/rust-toolchain@stable
 
-  - name: Rust Cache
-    uses: Swatinem/rust-cache@v2
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
 
-  - name: Build
-    run: cargo build --release
+      - name: Rust Cache
+        uses: Swatinem/rust-cache@v2
 
-  - name: Generate Book
-    env:
-      HF_TOKEN: ${{ secrets.HF_TOKEN_1 }}
-      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-    run: cargo run --release -- --topic ""The One-Person AI Empire: How to Build a Digital Income System Using AI Automation" --lang ar
+      - name: Build
+        run: cargo build --release
 
-  - name: List files for debugging
-    run: ls -R # هذه الخطوة ستظهر لنا في الـ Log أين تم حفظ ملفات الكتاب بالضبط
+      - name: Generate Book
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN_1 }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: cargo run --release -- --topic "The One-Person AI Empire: How to Build a Digital Income System Using AI Automation" --lang en
 
-  - name: Upload Artifact
-    uses: actions/upload-artifact@v4
-    with:
-      name: my-first-book
-      # قمنا بتعديل المسار ليشمل أي ملف ينتهي بـ .md أو .pdf في المجلد الرئيسي أو الفرعي
-      path: |
-        **/*.md
-        **/*.pdf
+      - name: List files for debugging
+        run: ls -R
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-first-book
+          path: |
+            **/*.md
+            **/*.pdf
