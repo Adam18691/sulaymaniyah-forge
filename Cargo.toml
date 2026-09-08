@@ -2,5 +2,6 @@
 name = "sulaymaniyah-forge"
 version = "2.0.0"
 edition = "2021"
+
 [dependencies]
-anyhow = "1"
+anyhow = "1.0"
