@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch: {} # أضفت الأقواس هنا لضمان تفعيل الزر في جميع إصدارات GitHub
+  workflow_dispatch:
 
 jobs:
   build:
@@ -27,15 +27,17 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN_1 }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        # تم تعديل الموضوع إلى الإنجليزية واللغة إلى en
         run: cargo run --release -- --topic "The One-Person AI Empire: How to Build a Digital Income System Using AI Automation" --lang en
 
       - name: List files for debugging
-        run: ls -R
+        run: ls -R # هذه الخطوة ستظهر لنا في الـ Log أين تم حفظ ملفات الكتاب بالضبط
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ai-empire-book
+          name: ai-empire-book # تغيير اسم الملف ليكون أكثر احترافية
+          # قمنا بتعديل المسار ليشمل أي ملف ينتهي بـ .md أو .pdf في المجلد الرئيسي أو الفرعي
           path: |
             **/*.md
             **/*.pdf
