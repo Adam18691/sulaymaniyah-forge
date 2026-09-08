@@ -26,7 +26,8 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN_1 }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-        run: cargo run --release -- --topic "The One-Person AI Empire: How to Build a Digital Income System Using AI Automation" --lang en
+        run: |
+          cargo run --release -- --topic "The One-Person AI Empire: How to Build a Digital Income System Using AI Automation" --lang en
 
       - name: List files for debugging
         run: ls -R
